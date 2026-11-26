@@ -4,11 +4,35 @@
 
 void playGame() {
     const int minimum = 1;
-    const int maximum = 20;
-    const int target = randomNumber(minimum, maximum);
+    int maximum;
 
     std::cout << "=== GUESSQUEST ===\n";
-    std::cout << "I'm thinking of a number between " << minimum
+    std::cout << "Choose difficulty:\n";
+    std::cout << "1. Easy (1-10)\n";
+    std::cout << "2. Medium (1-20)\n";
+    std::cout << "3. Hard (1-100)\n";
+    std::cout << "Enter choice: ";
+
+    int difficulty;
+    if (!(std::cin >> difficulty)) {
+        std::cout << "Invalid input. Ending the game.\n";
+        return;
+    }
+
+    if (difficulty == 1) {
+        maximum = 10;
+    } else if (difficulty == 2) {
+        maximum = 20;
+    } else if (difficulty == 3) {
+        maximum = 100;
+    } else {
+        std::cout << "Invalid difficulty choice.\n";
+        return;
+    }
+
+    const int target = randomNumber(minimum, maximum);
+
+    std::cout << "\nI'm thinking of a number between " << minimum
               << " and " << maximum << ".\n\n";
 
     int attemptsRemaining = 5;
